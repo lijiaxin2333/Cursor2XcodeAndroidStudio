@@ -1,0 +1,68 @@
+{
+  "name": "jump-to-native-ide",
+  "displayName": "Jump to Native IDE",
+  "description": "Jump to Xcode (xed) or Android Studio (studio) at the current file and line.",
+  "version": "0.0.1",
+  "publisher": "your-publisher-name",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "jumpToNativeIde.jumpToXcode",
+        "title": "Jump to Xcode"
+      },
+      {
+        "command": "jumpToNativeIde.jumpToAndroidStudio",
+        "title": "Jump to Android Studio"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "jumpToNativeIde.jumpToXcode",
+          "group": "navigation@20"
+        },
+        {
+          "command": "jumpToNativeIde.jumpToAndroidStudio",
+          "group": "navigation@21"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Jump to Native IDE",
+      "properties": {
+        "jumpToNativeIde.xcode.command": {
+          "type": "string",
+          "default": "xed",
+          "description": "Command used to open Xcode at a file/line."
+        },
+        "jumpToNativeIde.androidStudio.command": {
+          "type": "string",
+          "default": "studio",
+          "description": "Command used to open Android Studio at a file/line."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -watch -p .",
+    "vscode:prepublish": "npm run compile",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.6.3",
+    "@vscode/vsce": "^3.6.0"
+  }
+}
+
+
